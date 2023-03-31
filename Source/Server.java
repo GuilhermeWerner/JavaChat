@@ -58,9 +58,9 @@ class ClientHandler implements Runnable {
 
     public void run() {
         try {
-            String message;
+            String message = clientSocket.getRemoteSocketAddress().toString() + ": ";
 
-            while ((message = reader.readLine()) != null) {
+            while ((message += reader.readLine()) != null) {
                 server.broadcast(message, this);
             }
         } catch (IOException e) {
